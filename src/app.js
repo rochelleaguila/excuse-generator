@@ -13,30 +13,33 @@ window.onload = () => {
   console.log("Hello Rigo from the console!");
 };
 
-let generateExcuse = () => {
-  let who = ["The dog", "My grandma", "Bob's turtle", "My bird"];
-  let action = ["ate", "peed", "crushed", "broke"];
-  let what = ["my homework", "the keys", "the car"];
-  let when = [
+function init() {
+  const button = document.querySelector("#bttn");
+  const excuseElement = document.querySelector("#excuse");
+  if (button && excuseElement) {
+    button.addEventListener("click", () => {
+      excuseElement.innerHTML = generateExcuse();
+    });
+  } else {
+    console.error("Button or excuse element not found!");
+  }
+  console.log("Initialization complete!");
+}
+window.onload = init;
+const generateExcuse = () => {
+  const who = ["The dog", "My grandma", "Bob's turtle", "My bird"];
+  const action = ["ate", "peed", "crushed", "broke"];
+  const what = ["my homework", "the keys", "the car"];
+  const when = [
     "before the class",
     "right on time",
     "when I finished",
     "during my lunch",
     "while I was praying"
   ];
-
-  let whoIndx = Math.floor(Math.random() * who.length);
-  let actnIndx = Math.floor(Math.random() * action.length);
-  let whatIndx = Math.floor(Math.random() * what.length);
-  let whenIndx = Math.floor(Math.random() * when.length);
-
-  return (
-    who[whoIndx] +
-    " " +
-    action[actnIndx] +
-    " " +
-    what[whatIndx] +
-    " " +
-    when[whenIndx]
-  );
+  const whoIndex = Math.floor(Math.random() * who.length);
+  const actionIndex = Math.floor(Math.random() * action.length);
+  const whatIndex = Math.floor(Math.random() * what.length);
+  const whenIndex = Math.floor(Math.random() * when.length);
+  return `${who[whoIndex]} ${action[actionIndex]} ${what[whatIndex]} ${when[whenIndex]}`;
 };
